@@ -1,0 +1,6 @@
+.course-wrapper {
+    gap: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
