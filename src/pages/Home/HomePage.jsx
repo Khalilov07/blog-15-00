@@ -1,30 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./homepage.css";
 import CourseItem from "../../components/CourseItem/CourseItem";
+import axios from "axios";
+
+const getData = () => {
+  return axios("http://localhost:3000/courses")
+}
 
 const HomePage = () => {
-  const courses = [
-    {
-      id : 1,
-      name: "HTML",
-      duration: 1,
-    },
-    {
-      id : 2,
-      name: "CSS",
-      duration: 1,
-    },
-    {
-      id : 3,
-      name: "JAVA SCRIPT",
-      duration: 2.5,
-    },
-    {
-      id : 4,
-      name: "React JS",
-      duration: 1.5,
-    },
-  ];
+
+  const [courses, setCourses] = useState([]); // состояние нужно для получение данных с ответа
+
+  useEffect(() => {
+    getData()
+      .then((res) => setCourses(res.data))
+    // promise = {resolve, reject}
+  }, []); // пустой массив в виде второго параметра, позволяет выполнить функцию одина раза
+
+  console.log(courses);
+
+  // useEffect() - позволяет выполнить какой-то эффект на странице
+
+  // console.log(courses);
 
   return (
     <div className="course-wrapper">
@@ -33,8 +30,9 @@ const HomePage = () => {
         с информацией о курсах
     */}
 
-      {courses.map((course) => <CourseItem key={course.id} course={course} />)}
-        
+      {courses.map((course) => (
+        <CourseItem key={course.id} course={course} />
+      ))}
     </div>
   );
 };

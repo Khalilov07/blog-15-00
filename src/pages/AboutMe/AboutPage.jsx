@@ -37,7 +37,7 @@ const AboutPage = () => {
 
   const handleLeft = () => {
     const newAllTurns = {
-      ...allTurns,
+      ...allTurns, // ...название объекта это - spread operator
       left: allTurns.left + 1,
     };
     setAllTurns(newAllTurns);
