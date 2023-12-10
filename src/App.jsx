@@ -6,6 +6,7 @@ import Header from "./components/Header/Header";
 import HomePage from "./pages/Home/HomePage";
 import AboutPage from "./pages/AboutMe/AboutPage";
 import ContactPage from "./pages/Contact/ContactPage";
+import CreatePost from "./pages/CreatePost/CreatePost";
 
 // Reactjs code snippet
 
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} /> 
+        <Route path="/create" element={<CreatePost />} /> 
       </Routes>
 
     </div>

@@ -3,8 +3,11 @@ import "./homepage.css";
 import CourseItem from "../../components/CourseItem/CourseItem";
 import axios from "axios";
 
+// создать новую страницу, назвать её CreatePost.jsx создать в этой странице разметку
+// и сделать для неё роут
+
 const getData = () => {
-  return axios("http://localhost:3000/courses")
+  return axios("http://localhost:3001/courses")
 }
 
 const HomePage = () => {
