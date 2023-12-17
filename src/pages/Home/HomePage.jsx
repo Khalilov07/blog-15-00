@@ -20,9 +20,14 @@ const HomePage = () => {
     // promise = {resolve, reject}
   }, []); // пустой массив в виде второго параметра, позволяет выполнить функцию одина раза
 
-  // менять состояние showAll(false), но если он уже false то менять его на true
-  // при нажатии на кнопку
-  // ! - не
+  // если состояние ShowALL = true то тогда отображать все элемент в массиве, если false то тогда выполнять
+  // фильтрацию 
+
+
+  const filteredCourses = showAll === true ? courses : courses.filter((course) => course.important == true)
+
+  console.log(filteredCourses)
+
 
   const changeState = () => {
     setShowAll(!showAll) // !true = false, !false = true
@@ -39,10 +44,10 @@ const HomePage = () => {
         с информацией о курсах
     */}
 
-      <button onClick={changeState}>Show Important Courses</button>
+      <button onClick={changeState}>{showAll == true ? "Show Important Course" : "Show All Course"}</button>
 
       <div className="course-wrapper">
-        {courses.map((course) => (
+        {filteredCourses.map((course) => (
           <CourseItem key={course.id} course={course} />
         ))}
       </div>
