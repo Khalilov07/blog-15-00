@@ -11,9 +11,8 @@ const getData = () => {
 };
 
 const HomePage = () => {
-
   const [courses, setCourses] = useState([]); // состояние нужно для получение данных с ответа
-  const [showAll, setShowAll] = useState(true)
+  const [showAll, setShowAll] = useState(true);
 
   useEffect(() => {
     getData().then((res) => setCourses(res.data));
@@ -21,16 +20,24 @@ const HomePage = () => {
   }, []); // пустой массив в виде второго параметра, позволяет выполнить функцию одина раза
 
   // если состояние ShowALL = true то тогда отображать все элемент в массиве, если false то тогда выполнять
-  // фильтрацию 
+  // фильтрацию
 
+  const filteredCourses = showAll ? courses : courses.filter((course) => course.important == true);
 
-  const filteredCourses = showAll === true ? courses : courses.filter((course) => course.important == true)
-
-  console.log(filteredCourses)
-
+  // json-server --watch db.json --port 3001
 
   const changeState = () => {
-    setShowAll(!showAll) // !true = false, !false = true
+    setShowAll(!showAll); // !true = false, !false = true
+  };
+
+  // в случае успешного удаления поста добавлять уведомление так как в createPost
+  // добавить кнопку EDIT (редактирование)
+
+  const deletePost = (id) => {
+    axios.delete(`http://localhost:3001/courses/${id}`)
+      .then(res => {
+        
+      }) // promise
   }
 
   // useEffect() - позволяет выполнить какой-то эффект на странице
@@ -44,14 +51,15 @@ const HomePage = () => {
         с информацией о курсах
     */}
 
-      <button onClick={changeState}>{showAll == true ? "Show Important Course" : "Show All Course"}</button>
+      <button onClick={changeState}>
+        {showAll == true ? "Show Important Course" : "Show All Course"}
+      </button>
 
       <div className="course-wrapper">
         {filteredCourses.map((course) => (
-          <CourseItem key={course.id} course={course} />
+          <CourseItem key={course.id} course={course} deletePost={() => deletePost(course.id)} />
         ))}
       </div>
-
     </div>
   );
 };

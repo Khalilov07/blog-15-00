@@ -10,3 +10,15 @@
 .course span {
     color: yellow;
 }
+
+.course__buttons {
+    display: flex;
+}
+
+.course__buttons button {
+    border: none;
+    color: white;
+    background: red;
+    font-weight: 600;
+    padding: 10px 12px;
+}

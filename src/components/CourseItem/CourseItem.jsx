@@ -1,15 +1,23 @@
-import React from 'react';
+import React from "react";
 
-import './courseitem.css'
+import "./courseitem.css";
 
-const CourseItem = ({ course }) => {
-
-    return (
-        <div className="course">
-            <h2>Название Курса: <span>{course.title}</span> </h2>
-            <h3>Продолжительность курса: <span>{course.duration}</span> </h3>
-        </div>
-    );
+const CourseItem = ({ course, deletePost }) => {
+  return (
+    <div className="course">
+      <div className="course__info">
+        <h2>
+          Название Курса: <span>{course.title}</span>
+        </h2>
+        <h3>
+          Продолжительность курса: <span>{course.duration}</span>
+        </h3>
+      </div>
+      <div className="course__buttons">
+        <button onClick={() => deletePost()}>DELETE</button>
+      </div>
+    </div>
+  );
 };
 
 // почитать про axios и понять где его нужно применить
