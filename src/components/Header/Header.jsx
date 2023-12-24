@@ -1,6 +1,6 @@
 import React from "react";
 
-import './header.css' // подключаем css файл
+import styles from './header.css' // подключаем css файл
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -12,7 +12,7 @@ const Header = () => {
   // <a> - запрашивает новый HTML файл и этот тег не умеет работать с jsx
 
   return (
-    <header>
+    <header className={}>
       <nav>
         <Link to='/'>Home</Link>
         <Link to='/about'>About me</Link>

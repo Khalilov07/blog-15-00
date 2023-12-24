@@ -15,6 +15,10 @@
     display: flex;
 }
 
+form h1  {
+    color: red;
+}
+
 .course__buttons button {
     border: none;
     color: white;

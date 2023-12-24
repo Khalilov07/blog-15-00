@@ -1,22 +1,10 @@
 {
   "courses": [
     {
-      "id": 4,
-      "title": "REACT JS",
-      "duration": 1.5,
-      "important": true
-    },
-    {
       "title": "HTML",
       "duration": "2",
       "important": true,
-      "id": 5
-    },
-    {
-      "title": "Post",
-      "duration": "2",
-      "important": true,
-      "id": 6
+      "id": 1
     }
   ]
 }

@@ -14,6 +14,8 @@ const HomePage = () => {
   const [courses, setCourses] = useState([]); // состояние нужно для получение данных с ответа
   const [showAll, setShowAll] = useState(true);
 
+  console.log(courses)
+
   useEffect(() => {
     getData().then((res) => setCourses(res.data));
     // promise = {resolve, reject}
@@ -32,17 +34,38 @@ const HomePage = () => {
 
   // в случае успешного удаления поста добавлять уведомление так как в createPost
   // добавить кнопку EDIT (редактирование)
+  // выбрать тему проекта и макет для проекта
 
   const deletePost = (id) => {
+    // id = 5
     axios.delete(`http://localhost:3001/courses/${id}`)
       .then(res => {
-        
+
+        setCourses(courses.filter(course => {
+            return course.id !== id
+            // { id: 5 }, {id : 4}, {id : 6} 
+        }))
+
       }) // promise
+
+      // id который есть в функции это id удаленного курса
+
   }
 
   // useEffect() - позволяет выполнить какой-то эффект на странице
 
   // console.log(courses);
+
+  // const arr = [10, 20, 30, 40, 50]
+
+  // const newArr = arr.filter(num => {
+  //   return num > 30
+  // })
+
+  // console.log(newArr);
+
+  // filter - выполняет проверку для каждого элемента массива и если этот элемент проходит проверку
+  // он добавляется в новый массив
 
   return (
     <div className="wrapper">
