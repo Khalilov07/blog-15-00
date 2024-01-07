@@ -5,7 +5,7 @@
     justify-content: center;
 }
 
-.wrapper button {
+.wrapper .button {
     border: none;
     font-size: 16px;
     padding: 5px 10px;

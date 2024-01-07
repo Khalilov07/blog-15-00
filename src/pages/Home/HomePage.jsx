@@ -11,10 +11,9 @@ const getData = () => {
 };
 
 const HomePage = () => {
+
   const [courses, setCourses] = useState([]); // состояние нужно для получение данных с ответа
   const [showAll, setShowAll] = useState(true);
-
-  console.log(courses)
 
   useEffect(() => {
     getData().then((res) => setCourses(res.data));
@@ -24,7 +23,9 @@ const HomePage = () => {
   // если состояние ShowALL = true то тогда отображать все элемент в массиве, если false то тогда выполнять
   // фильтрацию
 
-  const filteredCourses = showAll ? courses : courses.filter((course) => course.important == true);
+  const filteredCourses = showAll
+    ? courses
+    : courses.filter((course) => course.important == true);
 
   // json-server --watch db.json --port 3001
 
@@ -38,19 +39,33 @@ const HomePage = () => {
 
   const deletePost = (id) => {
     // id = 5
-    axios.delete(`http://localhost:3001/courses/${id}`)
-      .then(res => {
+    axios.delete(`http://localhost:3001/courses/${id}`).then((res) => {
+      setCourses(
+        courses.filter((course) => {
+          return course.id !== id;
+          // { id: 5 }, {id : 4}, {id : 6}
+        })
+      );
+    }); // promise
 
-        setCourses(courses.filter(course => {
-            return course.id !== id
-            // { id: 5 }, {id : 4}, {id : 6} 
-        }))
+    // id который есть в функции это id удаленного курса
+  };
 
-      }) // promise
+  const changeImportant = (id) => {
+    const course = courses.find((course) => course.id === id);
 
-      // id который есть в функции это id удаленного курса
-
-  }
+    const changedCourse = {
+      ...course,
+      important: !course.important,
+    };
+    axios
+      .put(`http://localhost:3001/courses/${id}`, changedCourse)
+      .then((res) =>
+        setCourses(
+          courses.map((course) => (course.id === id ? res.data : course))
+        )
+      );
+  };
 
   // useEffect() - позволяет выполнить какой-то эффект на странице
 
@@ -74,13 +89,18 @@ const HomePage = () => {
         с информацией о курсах
     */}
 
-      <button onClick={changeState}>
+      <button onClick={changeState} className="button">
         {showAll == true ? "Show Important Course" : "Show All Course"}
       </button>
 
       <div className="course-wrapper">
         {filteredCourses.map((course) => (
-          <CourseItem key={course.id} course={course} deletePost={() => deletePost(course.id)} />
+          <CourseItem
+            key={course.id}
+            course={course}
+            deletePost={() => deletePost(course.id)}
+            changeImportant={() => changeImportant(course.id)}
+          />
         ))}
       </div>
     </div>

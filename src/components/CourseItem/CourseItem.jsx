@@ -1,11 +1,13 @@
 import React from "react";
 
-import "./courseitem.css";
+import styles from "./courseitem.module.css";
 
-const CourseItem = ({ course, deletePost }) => {
+import { Button } from "@mui/material";
+
+const CourseItem = ({ course, deletePost, changeImportant }) => {
   return (
-    <div className="course">
-      <div className="course__info">
+    <div className={styles.course}>
+      <div className={styles.course__info}>
         <h2>
           Название Курса: <span>{course.title}</span>
         </h2>
@@ -13,8 +15,9 @@ const CourseItem = ({ course, deletePost }) => {
           Продолжительность курса: <span>{course.duration}</span>
         </h3>
       </div>
-      <div className="course__buttons">
-        <button onClick={() => deletePost()}>DELETE</button>
+      <div className={styles.course__buttons}>
+        <Button variant="contained" color="error" onClick={() => deletePost()}>DELETE</Button>
+        <Button variant="contained" color="success" onClick={() => changeImportant()}>CHANGE IMPORTANT</Button>
       </div>
     </div>
   );

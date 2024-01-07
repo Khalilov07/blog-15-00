@@ -1,16 +1,16 @@
-header {
+.header {
     height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-nav {
+.nav {
     gap: 20px;
     display: flex;
 }
 
-nav a {
+.nav a {
     color: black;
     font-size: 22px;
     text-decoration: none;

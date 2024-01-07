@@ -1,10 +1,13 @@
 .course {
+    gap: 70px;
     width: 30%;
     height: 200px;
     padding: 10px;
+    display: flex;
     color: white;
     border-radius: 8px;
     background: blue;
+    flex-direction: column;
 }
 
 .course span {
@@ -13,16 +16,5 @@
 
 .course__buttons {
     display: flex;
-}
-
-form h1  {
-    color: red;
-}
-
-.course__buttons button {
-    border: none;
-    color: white;
-    background: red;
-    font-weight: 600;
-    padding: 10px 12px;
+    column-gap: 20px;
 }
